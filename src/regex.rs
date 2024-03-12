@@ -6,18 +6,22 @@ pub fn extract_information(text: &str) {
 	let email_match: Vec<_> = email_regex.captures_iter(text).collect(); 
 
 	if !email_match.is_empty() {
-		println!("\nEmails trouvés:");
-		for cap in email_regex.captures_iter(text) {
+		println!("\nFound e-mails:");
+		for cap in email_match {
 			println!("{}", &cap[0]);
 		}
 	}
 
     // TODO: Enhance phone numbers matching regex
     let phone_regex = Regex::new(r"\b\d{10}\b").unwrap();
-    println!("\nNuméros de téléphone trouvés:");
-    for cap in phone_regex.captures_iter(text) {
-        println!("{}", &cap[0]);
-    }
+	let phone_match: Vec<_> = phone_regex.captures_iter(text).collect(); 
+
+	if !phone_match.is_empty() {
+		println!("\nPhone Numbers:");
+		for cap in phone_match {
+			println!("{}", &cap[0]);
+		}
+	}
 
     println!("")
 }
